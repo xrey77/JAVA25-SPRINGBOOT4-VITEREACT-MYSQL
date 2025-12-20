@@ -1,7 +1,6 @@
 package com.java25.java25.springboot4.mysql.controllers;
 
 import org.springframework.boot.webmvc.error.ErrorController;
-//import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 

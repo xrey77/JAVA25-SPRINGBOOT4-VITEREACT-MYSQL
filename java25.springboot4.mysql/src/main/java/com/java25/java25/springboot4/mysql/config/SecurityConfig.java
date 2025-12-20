@@ -49,10 +49,10 @@ public class SecurityConfig {
             .cors(Customizer.withDefaults())
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/auth/**", "/take/**", "/error").permitAll()                
-                .requestMatchers("/**", "/index.html", "/react/**", "/images/**", "/users/**", "/products/**", "/public/**").permitAll()
-                .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()                
-                .anyRequest().authenticated()
+                    .requestMatchers("/auth/**", "/public/**", "/take/**", "/error").permitAll()                
+                    .requestMatchers("/", "/index.html", "/static/**", "/vue/**", "/images/**", "/users/**", "/products/**").permitAll()
+                    .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()                
+            		.anyRequest().authenticated()
             )
             .oauth2ResourceServer(oauth2 -> oauth2
                     .jwt(jwt -> jwt.decoder(jwtDecoder()))

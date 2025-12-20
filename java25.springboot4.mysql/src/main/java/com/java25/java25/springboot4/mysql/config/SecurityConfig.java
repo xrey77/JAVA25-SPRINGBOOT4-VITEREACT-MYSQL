@@ -19,6 +19,8 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import com.java25.java25.springboot4.mysql.services.JwtUserDetailsService;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import jakarta.servlet.DispatcherType;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -49,8 +51,10 @@ public class SecurityConfig {
             .cors(Customizer.withDefaults())
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
+                    .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()            		            		
                     .requestMatchers("/auth/**", "/public/**", "/take/**", "/error").permitAll()                
-                    .requestMatchers("/", "/index.html", "/static/**", "/vue/**", "/images/**", "/users/**", "/products/**").permitAll()
+                    .requestMatchers("/about", "/contact", "/profile", "/productlist", "/productcatalog", "/productsearch").permitAll()
+                    .requestMatchers("/", "/index.html", "/static/**", "/react/**", "/images/**", "/users/**", "/products/**").permitAll()
                     .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()                
             		.anyRequest().authenticated()
             )
@@ -84,7 +88,7 @@ public class SecurityConfig {
 	public CorsConfigurationSource corsConfigurationSource() {
 	    CorsConfiguration configuration = new CorsConfiguration();
 	    // Allow Vite React dev server as requested
-	    configuration.setAllowedOrigins(List.of("http://localhost:5173")); 
+	    configuration.setAllowedOrigins(List.of("http://localhost:5173", "http://127.0.0.1:5173")); 
 	    configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
 	    configuration.setAllowedHeaders(List.of("Authorization", "Content-Type", "Accept"));
 	    configuration.setAllowCredentials(true);

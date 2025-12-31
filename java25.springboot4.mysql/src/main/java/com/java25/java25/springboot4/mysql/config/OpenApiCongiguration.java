@@ -22,9 +22,8 @@ public class OpenApiCongiguration {
 	  @Bean
 	  public OpenAPI barclaysOpenAPI() {
 
-		Server devServer = new Server().url("/").description("Local Development Server");
-		    
-		// For production, use the actual domain without repeating the port if it's standard 80/443
+		Server devServer = new Server().url("/").description("Default");		  
+//		Server devServer = new Server().url("/").description("Local Development Server");		    
 		Server prodServer = new Server().url(prodUrl).description("Production Server");
 		  	        		  
 	    Contact contact = new Contact();
@@ -32,7 +31,7 @@ public class OpenApiCongiguration {
 	    contact.setName("Reynald Marquez-Gragasin");
 	    contact.setUrl("http://localhost:9000");
 
-	    License mitLicense = new License().name("MIT License").url("https://choosealicense.com/licenses/mit/");
+	    License mitLicense = new License().name("MIT License").url("http://barclays-bank.com/licenses/mit/");
 
 	    Info info = new Info()
                 .title("Barclays Bank API Management")

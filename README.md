@@ -19,4 +19,4 @@ This will require your Google/Microsoft Authenticator</p>
 <p>4. Upload User's Profile Picture </p>
 <p>5. Products Listings, Catalogs pagination and Product Search</p>
 <p>6. Swagger API-Doc</p>
-<p>http://localhost:9000/swagger-ui/index.html</>
+<p>http://localhost:9000/swagger-ui.html</>

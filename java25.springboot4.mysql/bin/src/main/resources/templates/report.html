@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style>
+        body { font-family: 'Arial', sans-serif; margin: 20px; }
+        h3 { color: #333; text-align: left; margin-top: -7px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; font-size:10px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .footer { position: fixed; bottom: 0; width: 100%; text-align: left; font-size: 8px; }
+        /* Forces page break for large lists */
+        tr { page-break-inside: avoid; }
+	    @page {
+	        /* Defines the footer area */
+	        @bottom-right {
+	            content: "Page " counter(page) " of " counter(pages);
+	            font-family: Arial, sans-serif;
+	            font-size: 8pt;
+	        }
+	        /* Optional: Set margins to ensure the footer doesn't overlap content */
+	        margin-bottom: 1in;
+	    }        
+	    .report-date {
+            font-size: 10px;
+            color: #555;
+            margin-top: -12px;
+        }	    
+    </style>
+</head>
+<body>
+	<img th:src="${logoBase64}" alt="Logo" style="width: 150px; height: 30px; margin: 0 auto;" />
+    <h3>Products Report</h3>
+    <p class="report-date" th:text="${reportDate}">As of Date</p>    
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Description</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="product : ${products}">
+                <td th:text="${product.id}">1</td>
+                <td th:text="${product.descriptions}">Product Name</td>
+                <td th:text="${#numbers.formatCurrency(product.sellprice)}">$0.00</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="footer">Generated on: <span th:text="${#dates.format(#dates.createNow(), 'yyyy-MM-dd HH:mm')}"></span></div>
+</body>
+</html>
+

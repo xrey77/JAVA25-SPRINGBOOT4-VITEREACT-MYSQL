@@ -1,0 +1,27 @@
+<script th:inline="javascript">
+    /* Use the special comment syntax to avoid syntax errors in IDEs */
+    const data = /*[[${sales}]]*/ []; 
+    
+    // Ensure data exists before mapping
+    const labels = data.map(t => t.date);   // X-axis usually uses the date
+    const values = data.map(t => t.amount); // Y-axis usually uses the amount
+
+    new Chart(document.getElementById('salesChart'), {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{ 
+                label: 'Sales Amount', 
+                data: values,
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: { beginAtZero: true }
+            }
+        }
+    });
+</script>
